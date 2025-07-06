@@ -1,4 +1,12 @@
-const API_BASE_URL = "http://localhost:4000"
+// Dynamic API base URL - detects environment
+const API_BASE_URL = (() => {
+    // In production, use the same domain as the frontend
+    if (import.meta.env.PROD) {
+        return window.location.origin;
+    }
+    // In development, use localhost
+    return "http://localhost:4000";
+})();
 
 export const logsApi = {
     // Test backend connection
