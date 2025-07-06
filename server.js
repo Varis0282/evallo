@@ -121,6 +121,14 @@ app.get('/', (req, res) => {
     });
 });
 
+// Catch-all route for frontend (must come after all API routes)
+if (process.env.NODE_ENV === "production") {
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "front-end", "dist", "index.html"));
+    });
+}
+
+
 // 404 handler
 app.use((req, res) => {
     res.status(404).json({
@@ -129,12 +137,6 @@ app.use((req, res) => {
     });
 });
 
-// Catch-all route for frontend (must come after all API routes)
-if (process.env.NODE_ENV === "production") {
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "front-end", "dist", "index.html"));
-    });
-}
 
 // Global error handler
 app.use((error, req, res, next) => {
