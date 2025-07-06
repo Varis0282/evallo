@@ -58,6 +58,11 @@ app.use(express.json({ limit: '10mb' })); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(cors());
 
+// Serve static files in production
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "/front-end/dist")));
+}
+
 // Routes
 app.use('/logs', logRoutes);
 
@@ -124,6 +129,13 @@ app.use((req, res) => {
     });
 });
 
+// Catch-all route for frontend (must come after all API routes)
+if (process.env.NODE_ENV === "production") {
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "front-end", "dist", "index.html"));
+    });
+}
+
 // Global error handler
 app.use((error, req, res, next) => {
     console.error('Unhandled error:', error);
@@ -132,13 +144,6 @@ app.use((error, req, res, next) => {
         message: 'An unexpected error occurred'
     });
 });
-
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "/evallo/dist")));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "evallo", "dist", "index.html"));
-    });
-  }
 
 app.listen(port, () => {
     console.log(`🚀 Log Ingestion and Querying System running on port ${port}`);
