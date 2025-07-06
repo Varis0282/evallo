@@ -102,7 +102,7 @@ app.get('/health', async (req, res) => {
 });
 
 // Root endpoint
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.json({
         message: 'Log Ingestion and Querying System API',
         version: '1.0.0',
@@ -147,7 +147,7 @@ app.use((error, req, res, next) => {
 
 app.listen(port, () => {
     console.log(`🚀 Log Ingestion and Querying System running on port ${port}`);
-    console.log(`📍 API Documentation available at: http://localhost:${port}/`);
+    console.log(`📍 API Documentation available at: http://localhost:${port}/api`);
     console.log(`🔍 Basic health check: http://localhost:${port}/ping`);
     console.log(`🏥 Detailed health check: http://localhost:${port}/health`);
     console.log(`📝 Logs endpoint: http://localhost:${port}/logs`);
