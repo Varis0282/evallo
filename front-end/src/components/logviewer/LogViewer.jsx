@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react"
 import { logsApi } from "../../api/logs"
 import { useDebounce } from "../../hooks/useDebounce"
-import Header from "../header/Header"
+import Header from "../top-header/Header"
 import FilterBar from "../filterbar/FilterBar"
 import LogList from "../loglist/LogList"
 import LinearLoader from "../linearloader/LinearLoader"

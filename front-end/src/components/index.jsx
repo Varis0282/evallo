@@ -1,4 +1,4 @@
-export { Header } from "./Header"
+export { Header } from "./top-header"
 export { FilterBar } from "./FilterBar"
 export { LogEntry } from "./LogEntry"
 export { LogList } from "./LogList"
