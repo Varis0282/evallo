@@ -128,15 +128,6 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-// Global error handler
-app.use((error, req, res, next) => {
-    console.error('Unhandled error:', error);
-    res.status(500).json({
-        error: 'Internal Server Error',
-        message: 'An unexpected error occurred'
-    });
-});
-
 app.listen(port, () => {
     console.log(`🚀 Log Ingestion and Querying System running on port ${port}`);
     console.log(`📍 API Documentation available at: http://localhost:${port}/`);
