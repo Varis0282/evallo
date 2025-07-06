@@ -102,7 +102,7 @@ app.get('/health', async (req, res) => {
 });
 
 // Root endpoint
-app.get('/', (req, res) => {
+app.get('/root', (req, res) => {
     res.json({
         message: 'Log Ingestion and Querying System API',
         version: '1.0.0',
@@ -115,7 +115,7 @@ app.get('/', (req, res) => {
             'GET /health': 'Detailed system health check'
         },
         documentation: {
-            'GitHub': 'https://github.com/yourusername/evallo',
+            'GitHub': 'https://github.com/Varis0282/evallo',
             'API Docs': 'See README.md for detailed API documentation'
         }
     });
@@ -123,7 +123,7 @@ app.get('/', (req, res) => {
 
 // Catch-all route for frontend (must come after all API routes)
 if (process.env.NODE_ENV === "production") {
-    app.get("*", (req, res) => {
+    app.get("/*", (req, res) => {
         res.sendFile(path.join(__dirname, "front-end", "dist", "index.html"));
     });
 }
