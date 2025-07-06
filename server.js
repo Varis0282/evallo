@@ -128,16 +128,6 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-
-// 404 handler
-app.use((req, res) => {
-    res.status(404).json({
-        error: 'Not Found',
-        message: 'The requested endpoint does not exist'
-    });
-});
-
-
 // Global error handler
 app.use((error, req, res, next) => {
     console.error('Unhandled error:', error);
