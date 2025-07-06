@@ -1,0 +1,19 @@
+{
+  "watch": [
+    "."
+  ],
+  "ignore": [
+    "data/**/*",
+    "test-data*.json",
+    "*.log",
+    "logs.json",
+    "node_modules/**/*",
+    ".git/**/*",
+    "evallo/**/*"
+  ],
+  "ext": "js,json",
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "delay": 1000
+}
