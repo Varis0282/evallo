@@ -123,7 +123,7 @@ app.get('/root', (req, res) => {
 
 // Catch-all route for frontend (must come after all API routes)
 if (process.env.NODE_ENV === "production") {
-    app.get("/*", (req, res) => {
+    app.get("*", (req, res) => {
         res.sendFile(path.join(__dirname, "front-end", "dist", "index.html"));
     });
 }
