@@ -115,7 +115,7 @@ app.get('/', (req, res) => {
             'GET /health': 'Detailed system health check'
         },
         documentation: {
-            'GitHub': 'https://github.com/yourusername/evallo',
+            'GitHub': 'https://github.com/Varis0282/evallo',
             'API Docs': 'See README.md for detailed API documentation'
         }
     });
