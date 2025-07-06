@@ -102,7 +102,7 @@ app.get('/health', async (req, res) => {
 });
 
 // Root endpoint
-app.get('/root', (req, res) => {
+app.get('/', (req, res) => {
     res.json({
         message: 'Log Ingestion and Querying System API',
         version: '1.0.0',
@@ -115,9 +115,17 @@ app.get('/root', (req, res) => {
             'GET /health': 'Detailed system health check'
         },
         documentation: {
-            'GitHub': 'https://github.com/Varis0282/evallo',
+            'GitHub': 'https://github.com/yourusername/evallo',
             'API Docs': 'See README.md for detailed API documentation'
         }
+    });
+});
+
+// 404 handler
+app.use((req, res) => {
+    res.status(404).json({
+        error: 'Not Found',
+        message: 'The requested endpoint does not exist'
     });
 });
 
@@ -127,6 +135,15 @@ if (process.env.NODE_ENV === "production") {
         res.sendFile(path.join(__dirname, "front-end", "dist", "index.html"));
     });
 }
+
+// Global error handler
+app.use((error, req, res, next) => {
+    console.error('Unhandled error:', error);
+    res.status(500).json({
+        error: 'Internal Server Error',
+        message: 'An unexpected error occurred'
+    });
+});
 
 app.listen(port, () => {
     console.log(`🚀 Log Ingestion and Querying System running on port ${port}`);
