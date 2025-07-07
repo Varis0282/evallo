@@ -245,9 +245,13 @@ const getLogs = async (filters = {}, pagination = {}) => {
         const endIndex = startIndex + limit;
         
         const paginatedLogs = filteredLogs.slice(startIndex, endIndex);
+
+        const sortedLogs = paginatedLogs.sort((a, b) => {
+            return new Date(b.timestamp) - new Date(a.timestamp);
+        });
         
         return {
-            logs: paginatedLogs,
+            logs: sortedLogs,
             pagination: {
                 currentPage: page,
                 pageSize: limit,
