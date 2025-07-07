@@ -106,8 +106,8 @@ const queryLogs = async (req, res) => {
             level,
             message,
             resourceId,
-            startTime,
-            endTime,
+            timestamp_start,
+            timestamp_end,
             traceId,
             spanId,
             commit,
@@ -124,8 +124,8 @@ const queryLogs = async (req, res) => {
         }
         
         // Validate timestamp formats
-        if (startTime) {
-            const startDate = new Date(startTime);
+        if (timestamp_start) {
+            const startDate = new Date(timestamp_start);
             if (isNaN(startDate.getTime())) {
                 return res.status(400).json({
                     error: 'Bad Request',
@@ -134,8 +134,8 @@ const queryLogs = async (req, res) => {
             }
         }
         
-        if (endTime) {
-            const endDate = new Date(endTime);
+        if (timestamp_end) {
+            const endDate = new Date(timestamp_end);
             if (isNaN(endDate.getTime())) {
                 return res.status(400).json({
                     error: 'Bad Request',
@@ -167,8 +167,8 @@ const queryLogs = async (req, res) => {
         if (level) filters.level = level;
         if (message) filters.message = message;
         if (resourceId) filters.resourceId = resourceId;
-        if (startTime) filters.startTime = startTime;
-        if (endTime) filters.endTime = endTime;
+        if (timestamp_start) filters.timestamp_start = timestamp_start;
+        if (timestamp_end) filters.timestamp_end = timestamp_end;
         if (traceId) filters.traceId = traceId;
         if (spanId) filters.spanId = spanId;
         if (commit) filters.commit = commit;

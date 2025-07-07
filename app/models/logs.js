@@ -188,15 +188,15 @@ const getLogs = async (filters = {}, pagination = {}) => {
         }
         
         // Filter by timestamp range
-        if (filters.startTime) {
-            const startTime = new Date(filters.startTime);
+        if (filters.timestamp_start) {
+            const startTime = new Date(filters.timestamp_start);
             filteredLogs = filteredLogs.filter(log => 
                 new Date(log.timestamp) >= startTime
             );
         }
         
-        if (filters.endTime) {
-            const endTime = new Date(filters.endTime);
+        if (filters.timestamp_end) {
+            const endTime = new Date(filters.timestamp_end);
             filteredLogs = filteredLogs.filter(log => 
                 new Date(log.timestamp) <= endTime
             );
